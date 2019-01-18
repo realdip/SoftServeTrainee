@@ -1,11 +1,16 @@
 """
 Program builds chessboard
 """
+import sys
+
+from instructions import TEXT
+
+
 class Chess:
     def __init__(self, height=0, width=0):
         self.height = int(height)
         self.width = int(width)
-        pass
+
     def __repr__(self):
         """
         representation
@@ -21,16 +26,34 @@ class Chess:
         board = '\n'.join(board)
         return board
 
-print('Введите параметры шахматной доски.\nЗначиения должны быть целыми положительными')
-h = ''
-w = ''
-while not str.isdigit(h):
-    h = input('Высота = ')
-    if not str.isdigit(h): print('Введите корректное значение')
 
-while not str.isdigit(w):
-    w = input('Ширина = ')
-    if not str.isdigit(w): print('Введите корректное значение')
+def chess_input_validator(h='', w=''):
+    #print('Введите параметры шахматной доски.\nЗначиения должны быть целыми положительными')
+    while not str.isdigit(h) or not str.isdigit(w):
+        print('Введите корректные значения')
+        h = input('Высота = ')
+        w = input('Ширина = ')
+        """
+            if not str.isdigit(h):
+            print('Введённое  значение {} некорректно'.format(h))
+            continue
+    #while not str.isdigit(w):
+        w = input('Ширина = ')
+        if not str.isdigit(w): print('Введённое  значение {} некорректно'.format(w))
+        """
+    return h, w
 
-v = Chess(h,w)
-print(v)
+
+if __name__ == "__main__":
+    if len(sys.argv[1:]) == 0:
+        print(TEXT['chesstext'])
+        h, w = chess_input_validator()
+        obj = Chess(h, w)
+        print(obj)
+    elif len(sys.argv[1:]) == 2:
+        h, w = sys.argv[1:]
+        h, w = chess_input_validator(h,w)
+        obj = Chess(h, w)
+        print(obj)
+    else:
+        print('Количество параметров должно быть 2 или повторите вызов без параметров')
