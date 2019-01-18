@@ -28,7 +28,7 @@ def file_parser(file_path, source_text, replace_text=None):
 
 
 if __name__ == "__main__":
-    f = 'static/test.txt'
-    print((file_parser(f, 'F')))
-    print((file_parser(f, 'f', 'F')))
-    print((file_parser(f, 'f')))
+    f = 'file.txt'
+    print((file_parser(f, 'entry')), 'Entries found')
+    print((file_parser(f, 'entry', 'replace')), 'Entries was replaced')
+    print((file_parser(f, 'entry')), 'Entries found')

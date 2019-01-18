@@ -15,5 +15,6 @@ class Numbers:
     def __repr__(self):
         return ', '.join(map(str, self.list))
 
-obj = Numbers(17)
-print(obj)
+if __name__ == "__main__":
+    obj = Numbers(17)
+    print(obj)

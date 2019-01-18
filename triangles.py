@@ -15,7 +15,7 @@ class Triangle:
         if p <= a or p <= b or p <= c:
             return None
         area = ((p - a) * (p - b) * (p - c)) ** 0.5
-        return round(area, 4)
+        return round(area, 2)
 
     def create():
         name = input("Имя: ")
@@ -32,8 +32,8 @@ class Triangle:
             if len(sides) == 3:
                 area = Triangle.triangle_area(sides)
                 if area:
-                    return Triangle(name, sides, area)
                     valid_sides = True
+                    return Triangle(name, sides, area)
                 else:
                     print('Ошибка ввода:', sides)
                     print('Нельзя построить треугольник по заданым сторонам')
@@ -46,14 +46,14 @@ def start():
     repeat = True
     while repeat:
         new_triangles.append(Triangle.create())
-        question = input("Введите 'y' или 'yes' чтобы продолжить: ").lower()
-        if question not in ('yes', 'y'):  # or just press ENTER
+        answer = input("Введите 'y' или 'yes' чтобы продолжить: ").lower()
+        if answer not in ('yes', 'y'):  # or just press ENTER
             repeat = None
 
     print('\nОтсортировано:')
     i = 1
     for self in sorted(new_triangles, key=lambda x: x.area):
-        print('{}. [Triangle {}]: {} сm²'.format(i, self.name, self.area))
+        print('{}. [Треугольник {}]: {} сm²'.format(i, self.name, self.area))
         i += 1
 
 
