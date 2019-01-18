@@ -8,8 +8,8 @@ from instructions import TEXT
 
 class Chess:
     def __init__(self, height=0, width=0):
-        self.height = int(height)
-        self.width = int(width)
+        self.height = height
+        self.width = width
 
     def __repr__(self):
         """
@@ -29,10 +29,14 @@ class Chess:
 
 def chess_input_validator(h='', w=''):
     #print('Введите параметры шахматной доски.\nЗначиения должны быть целыми положительными')
+    flag = 0
     while not str.isdigit(h) or not str.isdigit(w):
-        print('Введите корректные значения')
+        if flag != 0 or len(sys.argv[1:]) == 2: print('Полученные  размеры {} х {} некорректны\
+                                                        \nВведите корректные значения:'.format(h,w))
+        #print('Введите корректные значения')
         h = input('Высота = ')
         w = input('Ширина = ')
+        flag += 1
         """
             if not str.isdigit(h):
             print('Введённое  значение {} некорректно'.format(h))
@@ -41,7 +45,7 @@ def chess_input_validator(h='', w=''):
         w = input('Ширина = ')
         if not str.isdigit(w): print('Введённое  значение {} некорректно'.format(w))
         """
-    return h, w
+    return int(h), int(w)
 
 
 if __name__ == "__main__":
